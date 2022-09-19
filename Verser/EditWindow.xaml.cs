@@ -26,20 +26,9 @@ namespace Verser
             db = new ApplicationContext();
         }
 
-        private void ToBase()
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Width = this.Width;
-            mainWindow.Height = this.Height;
-            mainWindow.Left = this.Left;
-            mainWindow.Top = this.Top;
-            this.Close();
-            mainWindow.Show();
-        }
-
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            ToBase();
+            OpenClose.ChangeWindow(this, new MainWindow());
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +36,7 @@ namespace Verser
             Poem poem = new Poem(TitleRow.Text, AuthorRow.Text, TextRow.Text);
             db.Poems.Add(poem);
             db.SaveChanges();
-            ToBase();
+            OpenClose.ChangeWindow(this, new MainWindow());
         }
     }
 }
