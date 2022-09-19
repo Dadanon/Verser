@@ -56,3 +56,5 @@ C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\Verser.exe
 C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\Verser.pdb
 C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\PoemWindow.g.cs
 C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\PoemWindow.baml
+C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\PoemWindow.g.cs
+C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\PoemWindow.baml
