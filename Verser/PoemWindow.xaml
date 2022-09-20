@@ -13,7 +13,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox x:Name="TitleRow" Grid.Row="0"/>
-        <TextBox x:Name="TextRow" Grid.Row="1"/>
+        <TextBlock x:Name="TextRow" Grid.Row="1">
+            
+        </TextBlock>
         <Button x:Name="BackButton" HorizontalAlignment="Center" Content="Back to home" Grid.Row="2" Margin="10" Click="BackButton_Click"/>
     </Grid>
 </Window>

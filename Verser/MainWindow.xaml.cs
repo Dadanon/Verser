@@ -24,6 +24,7 @@ namespace Verser
     {
         ApplicationContext db;
         List<Poem> poems;
+        public static TextBlock tb = new TextBlock();
         public MainWindow()
         {
             InitializeComponent();
@@ -68,17 +69,41 @@ namespace Verser
             data[0] = newTitle;
             data[1] = text;
             return data;
-
         }
+
+        private TextBlock FullText(string[] text)
+        {
+            int strokesCount = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(text[i]))
+                {
+                    tb.Text += text[i] + "\n";
+                    strokesCount++;
+                }
+                else
+                {
+                    Expander e = new Expander();
+                    e.Content = FullText(text.Skip(strokesCount).Take(text.Length - strokesCount) as string[]);
+                    tb.Inlines.Add(e);
+                }
+            }
+
+            return tb;
+        }
+
         private void LinkClick(object sender, RoutedEventArgs e)
         {
             if (this.Cursor != Cursors.Pen)
             {
                 string[] data = SearchDataById(sender, e);
                 PoemWindow ne = new PoemWindow();
-                ne.TitleRow.Text = data[0];
-                ne.TextRow.Text = data[1];
-                OpenClose.ChangeWindow(this, ne);
+                if (data != null)
+                {
+                    ne.TitleRow.Text = data[0];
+                    ne.TextRow = FullText(data[1].Split('\n').ToArray());
+                    OpenClose.ChangeWindow(this, ne);
+                } 
             }
             else
             {
