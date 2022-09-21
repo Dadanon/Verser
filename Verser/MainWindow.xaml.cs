@@ -22,9 +22,12 @@ namespace Verser
     /// </summary>
     public partial class MainWindow : Window
     {
+        public int startCount = 0;
+        public int endCount = 0;
         ApplicationContext db;
         List<Poem> poems;
         public static TextBlock tb = new TextBlock();
+        public List<string> listDuplicate;
         public MainWindow()
         {
             InitializeComponent();
@@ -70,33 +73,41 @@ namespace Verser
             data[1] = text;
             return data;
         }
-        private TextBlock BaseTextBlock(string[] text)
+        private TextBlock BaseTextBlock(object sender, RoutedEventArgs e)
         {
+            List<string> text = SearchDataById(sender, e)[1].Split('\n').ToList();
+
             TextBlock tt = new TextBlock();
             tt.Name = "TitleRow";
-            if (text.Length > 3)
+
+            if ((text.Count - startCount) > 3)
             {
-                for (int i = 0; i < 4; i++)
+                endCount += 4;
+
+                for (int i = startCount; i < endCount; i++)
                 {
-                    tt.Text += text[i] + "\n";
+                    tt.Text += text[0] + "\n";
                 }
+                startCount += 4;
             }
             else
             {
-                int textLength = text.Length;
-                for (int i = 0; i < textLength; i++)
+                endCount += text.Count - startCount;
+
+                for (int i = startCount; i < endCount;i++)
                 {
-                    tt.Text += text[i] + "\n";
+                    tt.Text += text[0] + "\n";
                 }
             }
             return tt;
         }
 
-        private TextBlock ExpandableTextBlock(string[] text)
+        private TextBlock ExpandableTextBlock(object sender, RoutedEventArgs e)
         {
-            Expander e = new Expander();
-            TextBlock etb = BaseTextBlock(text);
-            etb.Inlines.Add(e);
+            Expander ep = new Expander();
+            TextBlock etb = BaseTextBlock(sender, e);
+            ep.Content = ExpandableTextBlock(sender, e);
+            etb.Inlines.Add(ep);
             return etb;
         }
 
@@ -107,7 +118,7 @@ namespace Verser
                 string[] data = SearchDataById(sender, e);
                 PoemWindow ne = new PoemWindow();
                 ne.TitleRow.Text = data[0];
-                TextBlock ttt = ExpandableTextBlock(data[1].Split('\n').ToArray());
+                TextBlock ttt = ExpandableTextBlock(sender, e);
                 ne.TextView.Content = ttt;
                 OpenClose.ChangeWindow(this, ne);
             }
