@@ -70,26 +70,34 @@ namespace Verser
             data[1] = text;
             return data;
         }
-
-        private TextBlock FullText(string[] text)
+        private TextBlock BaseTextBlock(string[] text)
         {
-            int strokesCount = 0;
-            for (int i = 0; i < text.Length; i++)
+            TextBlock tt = new TextBlock();
+            tt.Name = "TitleRow";
+            if (text.Length > 3)
             {
-                if (!string.IsNullOrEmpty(text[i]))
+                for (int i = 0; i < 4; i++)
                 {
-                    tb.Text += text[i] + "\n";
-                    strokesCount++;
-                }
-                else
-                {
-                    Expander e = new Expander();
-                    e.Content = FullText(text.Skip(strokesCount).Take(text.Length - strokesCount) as string[]);
-                    tb.Inlines.Add(e);
+                    tt.Text += text[i] + "\n";
                 }
             }
+            else
+            {
+                int textLength = text.Length;
+                for (int i = 0; i < textLength; i++)
+                {
+                    tt.Text += text[i] + "\n";
+                }
+            }
+            return tt;
+        }
 
-            return tb;
+        private TextBlock ExpandableTextBlock(string[] text)
+        {
+            Expander e = new Expander();
+            TextBlock etb = BaseTextBlock(text);
+            etb.Inlines.Add(e);
+            return etb;
         }
 
         private void LinkClick(object sender, RoutedEventArgs e)
@@ -98,12 +106,10 @@ namespace Verser
             {
                 string[] data = SearchDataById(sender, e);
                 PoemWindow ne = new PoemWindow();
-                if (data != null)
-                {
-                    ne.TitleRow.Text = data[0];
-                    ne.TextRow = FullText(data[1].Split('\n').ToArray());
-                    OpenClose.ChangeWindow(this, ne);
-                } 
+                ne.TitleRow.Text = data[0];
+                TextBlock ttt = ExpandableTextBlock(data[1].Split('\n').ToArray());
+                ne.TextView.Content = ttt;
+                OpenClose.ChangeWindow(this, ne);
             }
             else
             {
