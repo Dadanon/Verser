@@ -28,6 +28,7 @@ namespace Verser
         List<Poem> poems;
         public static TextBlock tb = new TextBlock();
         public List<string> listDuplicate;
+        public List<string> text;
         public MainWindow()
         {
             InitializeComponent();
@@ -75,7 +76,8 @@ namespace Verser
         }
         private TextBlock BaseTextBlock(object sender, RoutedEventArgs e)
         {
-            List<string> text = SearchDataById(sender, e)[1].Split('\n').ToList();
+            text = SearchDataById(sender, e)[1].Split('\n').ToList();
+            text.RemoveAll(x => string.IsNullOrWhiteSpace(x));
 
             TextBlock tt = new TextBlock();
             tt.Name = "TitleRow";
@@ -86,7 +88,7 @@ namespace Verser
 
                 for (int i = startCount; i < endCount; i++)
                 {
-                    tt.Text += text[0] + "\n";
+                    tt.Text += text[i] + "\n";
                 }
                 startCount += 4;
             }
@@ -94,20 +96,37 @@ namespace Verser
             {
                 endCount += text.Count - startCount;
 
-                for (int i = startCount; i < endCount;i++)
+                for (int i = startCount; i < endCount; i++)
                 {
-                    tt.Text += text[0] + "\n";
+                    tt.Text += text[i] + "\n";
                 }
             }
+            
+
             return tt;
         }
 
         private TextBlock ExpandableTextBlock(object sender, RoutedEventArgs e)
         {
-            Expander ep = new Expander();
             TextBlock etb = BaseTextBlock(sender, e);
-            ep.Content = ExpandableTextBlock(sender, e);
-            etb.Inlines.Add(ep);
+
+            if ((text.Count - startCount) > 3)
+            {
+                Expander ep = new Expander();
+                ep.Content = ExpandableTextBlock(sender, e);
+                etb.Inlines.Add(ep);
+            }
+            else if ((text.Count - startCount) > 0)
+            {
+                Expander epp = new Expander();
+                TextBlock addy = new TextBlock();
+                for (int i = startCount; i < text.Count; i++)
+                {
+                    addy.Text += text[i] + "\n";
+                }
+                epp.Content = addy;
+                etb.Inlines.Add(epp);
+            }
             return etb;
         }
 
