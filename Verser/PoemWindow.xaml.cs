@@ -19,6 +19,7 @@ namespace Verser
     /// </summary>
     public partial class PoemWindow : Window
     {
+        public static List<Expander> exps = new List<Expander>();
         public PoemWindow()
         {
             InitializeComponent();

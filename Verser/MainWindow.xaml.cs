@@ -29,6 +29,9 @@ namespace Verser
         public static TextBlock tb = new TextBlock();
         public List<string> listDuplicate;
         public List<string> text;
+        public static int expCounter = 0;
+        public List<Expander> expanders = new List<Expander>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -101,9 +104,22 @@ namespace Verser
                     tt.Text += text[i] + "\n";
                 }
             }
-            
-
             return tt;
+        }
+
+        
+
+        private void CollapseChildren(object sender, RoutedEventArgs e)
+        {
+            Expander ex = sender as Expander;
+
+            if (PoemWindow.exps.Count > 0)
+            {
+                for (int i = PoemWindow.exps.IndexOf(ex) + 1; i < PoemWindow.exps.Count; i++)
+                {
+                    PoemWindow.exps[i].IsExpanded = false;
+                }
+            }
         }
 
         private TextBlock ExpandableTextBlock(object sender, RoutedEventArgs e)
@@ -113,12 +129,18 @@ namespace Verser
             if ((text.Count - startCount) > 3)
             {
                 Expander ep = new Expander();
+                ep.Name = "exp" + expanders.Count().ToString();
+                expanders.Add(ep);
+                ep.Collapsed += new RoutedEventHandler(CollapseChildren);
                 ep.Content = ExpandableTextBlock(sender, e);
                 etb.Inlines.Add(ep);
+                
             }
             else if ((text.Count - startCount) > 0)
             {
                 Expander epp = new Expander();
+                epp.Name = "exp" + expanders.Count().ToString();
+                expanders.Add(epp);
                 TextBlock addy = new TextBlock();
                 for (int i = startCount; i < text.Count; i++)
                 {
@@ -129,7 +151,6 @@ namespace Verser
             }
             return etb;
         }
-
         private void LinkClick(object sender, RoutedEventArgs e)
         {
             if (this.Cursor != Cursors.Pen)
@@ -139,6 +160,7 @@ namespace Verser
                 ne.TitleRow.Text = data[0];
                 TextBlock ttt = ExpandableTextBlock(sender, e);
                 ne.TextView.Content = ttt;
+                PoemWindow.exps = expanders;
                 OpenClose.ChangeWindow(this, ne);
             }
             else
