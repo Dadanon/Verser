@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verser"
         mc:Ignorable="d"
-        Title="EditWindow" Height="800" Width="300">
+        Title="EditWindow" x:Name="editW" Height="800" Width="300" MinWidth="300" MinHeight="800">
+    <Window.Resources>
+        <local:MinusFiftyConverter x:Key="minusConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,9 +21,18 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="TitleRow" Grid.Row="0" Grid.ColumnSpan="3" Text="Enter a title: " HorizontalAlignment="Center" Margin="10" AcceptsReturn="True"/>
-        <TextBox x:Name="AuthorRow" Grid.Row="1" Grid.ColumnSpan="3" Text="Enter an author: " HorizontalAlignment="Center" Margin="10" AcceptsReturn="True"/>
-        <TextBox x:Name="TextRow" Grid.Row="2" Grid.ColumnSpan="3" Text="Enter a text: " HorizontalAlignment="Center" Margin="10" AcceptsReturn="True"/>
+        <TextBox x:Name="TitleRow" Grid.Row="0" Grid.ColumnSpan="3" 
+                 Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
+                 HorizontalAlignment="Center" 
+                 Margin="10" AcceptsReturn="True"/>
+        <TextBox x:Name="AuthorRow" Grid.Row="1" Grid.ColumnSpan="3" 
+                 Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
+                 HorizontalAlignment="Center" 
+                 Margin="10" AcceptsReturn="True"/>
+        <TextBox x:Name="TextRow" Grid.Row="2" Grid.ColumnSpan="3" 
+                 Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
+                 HorizontalAlignment="Center" 
+                 Margin="10" AcceptsReturn="True"/>
         <Button x:Name="SaveButton" Grid.Row="3" Grid.Column="2" Content="Save" Margin="10" Click="SaveButton_Click"/>
         <Button x:Name="ReturnButton" Grid.Row="3" Grid.Column="1" Content="Return" Margin="10" Click="ReturnButton_Click"/>
     </Grid>

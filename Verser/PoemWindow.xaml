@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verser"
         mc:Ignorable="d"
-        Title="PoemWindow" Height="800" Width="300">
+        Title="PoemWindow" Height="800" Width="300" x:Name="poemW" MinHeight="800" MinWidth="300">
+    <Window.Resources>
+        <local:MinusFiftyConverter x:Key="minusConverter" />
+    </Window.Resources>
     <Grid x:Name="poemGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -14,8 +17,6 @@
         </Grid.RowDefinitions>
         <TextBox x:Name="TitleRow" Grid.Row="0"/>
         <Button x:Name="BackButton" HorizontalAlignment="Center" Content="Back to home" Grid.Row="2" Margin="10" Click="BackButton_Click"/>
-        <ScrollViewer x:Name="TextView" Grid.Row="1" Grid.ColumnSpan="3">
-
-        </ScrollViewer>
+        <ScrollViewer x:Name="TextView" Grid.Row="1" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

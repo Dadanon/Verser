@@ -100,6 +100,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MinusFiftyConverter.cs" />
     <Compile Include="OpenClose.cs" />
     <Compile Include="Poem.cs" />
     <Compile Include="PoemWindow.xaml.cs">

@@ -83,6 +83,7 @@ namespace Verser
             text.RemoveAll(x => string.IsNullOrWhiteSpace(x));
 
             TextBlock tt = new TextBlock();
+            tt.Margin = new Thickness(0, 10, 0, 0);
             tt.Name = "TitleRow";
 
             if ((text.Count - startCount) > 3)
@@ -111,11 +112,11 @@ namespace Verser
 
         private void CollapseChildren(object sender, RoutedEventArgs e)
         {
-            Expander ex = sender as Expander;
+            Expander ex = e.Source as Expander;
 
             if (PoemWindow.exps.Count > 0)
             {
-                for (int i = PoemWindow.exps.IndexOf(ex) + 1; i < PoemWindow.exps.Count; i++)
+                for (int i = PoemWindow.exps.IndexOf(ex); i < PoemWindow.exps.Count; i++)
                 {
                     PoemWindow.exps[i].IsExpanded = false;
                 }
@@ -129,25 +130,31 @@ namespace Verser
             if ((text.Count - startCount) > 3)
             {
                 Expander ep = new Expander();
+                ep.Margin = new Thickness(0, 10, 0 , 0);
                 ep.Name = "exp" + expanders.Count().ToString();
                 expanders.Add(ep);
                 ep.Collapsed += new RoutedEventHandler(CollapseChildren);
                 ep.Content = ExpandableTextBlock(sender, e);
                 etb.Inlines.Add(ep);
-                
+
             }
             else if ((text.Count - startCount) > 0)
             {
-                Expander epp = new Expander();
-                epp.Name = "exp" + expanders.Count().ToString();
-                expanders.Add(epp);
+                Expander ex = new Expander();
+                ex.Margin = new Thickness(0, 10, 0, 10);
                 TextBlock addy = new TextBlock();
+                addy.Margin = new Thickness(0, 10, 0, 0);
                 for (int i = startCount; i < text.Count; i++)
                 {
                     addy.Text += text[i] + "\n";
                 }
-                epp.Content = addy;
-                etb.Inlines.Add(epp);
+                ex.Content = addy;
+                if (!etb.Text.Equals(addy.Text))
+                {
+                    ex.Name = "exp" + expanders.Count().ToString();
+                    expanders.Add(ex);
+                    etb.Inlines.Add(ex);
+                }  
             }
             return etb;
         }
@@ -159,6 +166,7 @@ namespace Verser
                 PoemWindow ne = new PoemWindow();
                 ne.TitleRow.Text = data[0];
                 TextBlock ttt = ExpandableTextBlock(sender, e);
+                ttt.Margin = new Thickness(10);
                 ne.TextView.Content = ttt;
                 PoemWindow.exps = expanders;
                 OpenClose.ChangeWindow(this, ne);

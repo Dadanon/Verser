@@ -58,3 +58,4 @@ C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\PoemWindow.g.cs
 C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\PoemWindow.baml
 C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\PoemWindow.g.cs
 C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\PoemWindow.baml
+C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\GeneratedInternalTypeHelper.g.cs

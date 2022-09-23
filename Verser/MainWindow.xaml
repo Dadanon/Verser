@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="300" MouseRightButtonDown="Window_MouseRightButtonDown">
+        Title="MainWindow" Height="800" Width="300" MouseRightButtonDown="Window_MouseRightButtonDown"
+        x:Name="mainW" MinHeight="800" MinWidth="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="19*"/>
