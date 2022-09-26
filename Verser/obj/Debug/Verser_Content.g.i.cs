@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("button_delete_w95.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("editw.jpg")]
 
 

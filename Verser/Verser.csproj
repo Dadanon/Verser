@@ -172,10 +172,25 @@
     <Resource Include="button_new_w75.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons\Button_delete_w95.png" />
+    <Resource Include="Button_delete_w95.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Button_delete_w95.png" />
+    <Resource Include="button_return_w80.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\button_return_w85.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_return_w85.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\button_save_w60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_save_w60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="editW.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

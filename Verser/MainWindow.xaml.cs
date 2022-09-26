@@ -32,6 +32,19 @@ namespace Verser
         public static int expCounter = 0;
         public List<Expander> expanders = new List<Expander>();
 
+        Style style = new Style
+        {
+            TargetType = typeof(Border),
+            Setters =
+            {
+                new Setter
+                {
+                    Property = Border.CornerRadiusProperty,
+                    Value = new CornerRadius(5),
+                }
+            }
+        };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +54,7 @@ namespace Verser
             {
                 poems = db.Poems.ToList();
                 byte[] colorValues = TitleColorValues();
+                SolidColorBrush btnBorderBrush = new SolidColorBrush(Color.FromRgb(255, 191, 132));
 
                 foreach (Poem poem in poems)
                 {
@@ -49,6 +63,10 @@ namespace Verser
                     n.Background = new SolidColorBrush(Color.FromRgb(colorValues[0], colorValues[1], colorValues[2]));
                     n.Margin = new Thickness(10);
                     SetTitleTextProps(n, poem);
+                    n.Width = 200;
+                    n.BorderThickness = new Thickness(3);
+                    n.BorderBrush = Brushes.SaddleBrown;
+                    n.Resources.Add(style.TargetType, style);
                     n.Click += new RoutedEventHandler(this.LinkClick);
                     TitleView.Children.Add(n);
                 }

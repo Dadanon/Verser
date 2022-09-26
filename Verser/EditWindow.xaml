@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verser"
         mc:Ignorable="d"
-        Title="EditWindow" x:Name="editW" Height="800" Width="300" MinWidth="300" MinHeight="800">
+        Title="Verser" x:Name="editW" Height="800" Width="300" MinWidth="300" MinHeight="800">
     <Window.Resources>
         <local:MinusFiftyConverter x:Key="minusConverter" />
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/editW.jpg" Stretch="None"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,11 +19,6 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <TextBox x:Name="TitleRow" Grid.Row="0" Grid.ColumnSpan="3" 
                  Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
                  HorizontalAlignment="Center" 
@@ -33,7 +31,15 @@
                  Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
                  HorizontalAlignment="Center" 
                  Margin="10" AcceptsReturn="True"/>
-        <Button x:Name="SaveButton" Grid.Row="3" Grid.Column="2" Content="Save" Margin="10" Click="SaveButton_Click"/>
-        <Button x:Name="ReturnButton" Grid.Row="3" Grid.Column="1" Content="Return" Margin="10" Click="ReturnButton_Click"/>
+        <Button x:Name="SaveButton" Margin="0,0,10,0" Padding="0" BorderThickness="1"
+                 BorderBrush="Chocolate" Grid.Row="3" HorizontalAlignment="Right" 
+                 VerticalAlignment="Center" Background="BurlyWood" Click="SaveButton_Click">
+            <Image Source="/button_save_w60.png" Width="60" Height="26"/>
+        </Button>
+        <Button x:Name="ReturnButton" Margin="0,0,80,0" Padding="0" BorderThickness="1" 
+                 BorderBrush="Chocolate" Grid.Row="3" HorizontalAlignment="Right"
+                 VerticalAlignment="Center" Background="BurlyWood" Click="ReturnButton_Click">
+            <Image Source="/button_return_w85.png" Width="85" Height="26"/>
+        </Button>
     </Grid>
 </Window>
