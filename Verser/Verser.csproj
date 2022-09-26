@@ -144,6 +144,39 @@
   <ItemGroup>
     <Resource Include="back\mainW.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_new_w100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\pencil.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\button_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\button_new_w100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_new_w50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\button_new_w50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\button_new_w75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="button_new_w75.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\Button_delete_w95.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Button_delete_w95.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

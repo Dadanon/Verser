@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pencil.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("button_delete_w95.png")]
 
 

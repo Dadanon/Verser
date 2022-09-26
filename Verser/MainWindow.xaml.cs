@@ -40,17 +40,47 @@ namespace Verser
             if (db != null)
             {
                 poems = db.Poems.ToList();
+                byte[] colorValues = TitleColorValues();
 
                 foreach (Poem poem in poems)
                 {
                     Button n = new Button();
+                    n.Name = "button" + poem.Id.ToString();
+                    n.Background = new SolidColorBrush(Color.FromRgb(colorValues[0], colorValues[1], colorValues[2]));
                     n.Margin = new Thickness(10);
-                    n.Name = "Button" + poem.Id.ToString();
-                    n.Content = poem.Title + " - " + poem.Author;
+                    SetTitleTextProps(n, poem);
                     n.Click += new RoutedEventHandler(this.LinkClick);
                     TitleView.Children.Add(n);
                 }
             }
+        }
+        private byte[] TitleColorValues()
+        {
+            byte[] values = new byte[3];
+            Random rand = new Random();
+
+            for (int i = 0; i < 3; i++)
+            {
+                values[i] = (byte)(rand.Next(60, 190));
+            }
+            return values;
+        }
+        private void SetTitleTextProps(Button button, Poem poem)
+        {
+            TextBlock tb = new TextBlock();
+            Run bold = new Run();
+            bold.Text = poem.Author + "\n\n";
+            bold.FontWeight = FontWeights.Bold;
+            bold.FontSize = 16;
+            tb.Inlines.Add(bold);
+            Run normal = new Run();
+            normal.Text = poem.Title;
+            normal.FontSize = 14;
+            tb.Inlines.Add(normal);
+            tb.TextWrapping = TextWrapping.Wrap;
+            tb.TextAlignment = TextAlignment.Center;
+            tb.Margin = new Thickness(0, 5, 0, 5);
+            button.Content = tb;
         }
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
