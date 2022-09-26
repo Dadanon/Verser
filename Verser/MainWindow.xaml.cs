@@ -36,9 +36,11 @@ namespace Verser
         {
             InitializeComponent();
             db = new ApplicationContext();
+
             if (db != null)
             {
                 poems = db.Poems.ToList();
+
                 foreach (Poem poem in poems)
                 {
                     Button n = new Button();
@@ -66,6 +68,7 @@ namespace Verser
             m_db.Open();
             SQLiteCommand command = new SQLiteCommand(search, m_db);
             SQLiteDataReader reader = command.ExecuteReader();
+
             while (reader.Read())
             {
                 text += reader["Text"] + "\n";
@@ -108,8 +111,6 @@ namespace Verser
             return tt;
         }
 
-        
-
         private void CollapseChildren(object sender, RoutedEventArgs e)
         {
             Expander ex = e.Source as Expander;
@@ -144,11 +145,13 @@ namespace Verser
                 ex.Margin = new Thickness(0, 10, 0, 10);
                 TextBlock addy = new TextBlock();
                 addy.Margin = new Thickness(0, 10, 0, 0);
+
                 for (int i = startCount; i < text.Count; i++)
                 {
                     addy.Text += text[i] + "\n";
                 }
                 ex.Content = addy;
+
                 if (!etb.Text.Equals(addy.Text))
                 {
                     ex.Name = "exp" + expanders.Count().ToString();
