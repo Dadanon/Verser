@@ -21,21 +21,14 @@ namespace Verser
     {
         ApplicationContext db;
         string[] defaultTexts = { "Enter a title:", "Enter an author:", "Enter a text:" };
+        
         public EditWindow()
         {
             InitializeComponent();
+            TitleRow.Resources.Add(MainWindow.style.TargetType, MainWindow.style);
+            AuthorRow.Resources.Add(MainWindow.style.TargetType, MainWindow.style);
+            TextRow.Resources.Add(MainWindow.style.TargetType, MainWindow.style);
             db = new ApplicationContext();
-            TitleRow.Text = "Enter a title:";
-            TitleRow.GotFocus += new RoutedEventHandler(RemoveText);
-            TitleRow.LostFocus += new RoutedEventHandler(AddText);
-
-            AuthorRow.Text = "Enter an author:";
-            AuthorRow.GotFocus += new RoutedEventHandler(RemoveText);
-            AuthorRow.LostFocus += new RoutedEventHandler(AddText);
-
-            TextRow.Text = "Enter a text:";
-            TextRow.GotFocus += new RoutedEventHandler(RemoveText);
-            TextRow.LostFocus += new RoutedEventHandler(AddText);
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
@@ -43,39 +36,9 @@ namespace Verser
             OpenClose.ChangeWindow(this, new MainWindow());
         }
 
-        private void PlaceholderText(TextBox tb, string text)
-        {
-            tb.Text = text;
-
-            tb.GotFocus += new RoutedEventHandler(RemoveText);
-            tb.LostFocus += new RoutedEventHandler(AddText);
-        }
-
-        public void RemoveText(object sender, RoutedEventArgs e)
-        {
-            TextBox t = sender as TextBox;
-            if (t.Name == "TitleRow" && t.Text == "Enter a title:" || t.Name == "AuthorRow" && t.Text == "Enter an author:" || t.Name == "TextRow" && t.Text == "Enter a text:")
-            {
-                t.Text = "";
-            }
-        }
-
-        public void AddText(object sender, RoutedEventArgs e)
-        {
-            TextBox t = sender as TextBox;
-            if (string.IsNullOrWhiteSpace(t.Text))
-            {
-                if (t.Name == "TitleRow") t.Text = "Enter a title:";
-                else if (t.Name == "AuthorRow") t.Text = "Enter an author:";
-                else if (t.Name == "TextRow") t.Text = "Enter a text:";
-            }
-                
-            
-        }
-
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TitleRow.Text != "Enter a title:" && AuthorRow.Text != "Enter an author:" && TextRow.Text != "Enter a text:")
+            if (TitleRow.Text != defaultTexts[0] && AuthorRow.Text != defaultTexts[1] && TextRow.Text != defaultTexts[2])
             {
                 Poem poem = new Poem(TitleRow.Text, AuthorRow.Text, TextRow.Text);
                 db.Poems.Add(poem);
@@ -86,6 +49,46 @@ namespace Verser
             {
                 MessageBox.Show("Enter non-default values :)");
             }
+        }
+
+        private void editW_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FocusManager.SetFocusedElement(editW, editW);
+            Keyboard.ClearFocus();
+        }
+        private void TestIfTextNotEmpty(TextBox tb, string text)
+        {
+            if (string.IsNullOrEmpty(tb.Text)) tb.Text = text;
+        }
+        private void TitleRow_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TestIfTextNotEmpty(sender as TextBox, defaultTexts[0]);
+        }
+
+        private void AuthorRow_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TestIfTextNotEmpty(sender as TextBox, defaultTexts[1]);
+        }
+
+        private void TextRow_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TestIfTextNotEmpty(sender as TextBox, defaultTexts[2]);
+        }
+        private void TestIfTextIsDefault(TextBox tb, string text)
+        {
+            if (tb.Text == text) tb.Text = "";
+        }
+        private void TitleRow_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TestIfTextIsDefault(sender as TextBox, defaultTexts[0]);
+        }
+        private void AuthorRow_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TestIfTextIsDefault(sender as TextBox, defaultTexts[1]);
+        }
+        private void TextRow_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TestIfTextIsDefault(sender as TextBox, defaultTexts[2]);
         }
     }
 }

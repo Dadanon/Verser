@@ -25,7 +25,7 @@ namespace Verser
             InitializeComponent();
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             OpenClose.ChangeWindow(this, new MainWindow());
         }

@@ -32,7 +32,7 @@ namespace Verser
         public static int expCounter = 0;
         public List<Expander> expanders = new List<Expander>();
 
-        Style style = new Style
+        public static Style style = new Style
         {
             TargetType = typeof(Border),
             Setters =
@@ -40,7 +40,7 @@ namespace Verser
                 new Setter
                 {
                     Property = Border.CornerRadiusProperty,
-                    Value = new CornerRadius(5),
+                    Value = new CornerRadius(15),
                 }
             }
         };

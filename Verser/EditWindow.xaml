@@ -5,12 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verser"
         mc:Ignorable="d"
-        Title="Verser" x:Name="editW" Height="800" Width="300" MinWidth="300" MinHeight="800">
+        Title="Verser" x:Name="editW" Height="800" Width="300" MinWidth="300" MinHeight="800" MouseDown="editW_MouseDown">
     <Window.Resources>
-        <local:MinusFiftyConverter x:Key="minusConverter" />
+        <local:MinusFiftyConverter x:Key="minusConverter"/>
+        <Style x:Key="RowBorder" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="Maroon"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Grid.ColumnSpan" Value="3"/>
+            <Setter Property="Width" Value="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
     </Window.Resources>
     <Window.Background>
-        <ImageBrush ImageSource="/editW.jpg" Stretch="None"/>
+        <ImageBrush ImageSource="/back/editW.jpg" Stretch="None"/>
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
@@ -19,27 +32,24 @@
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="TitleRow" Grid.Row="0" Grid.ColumnSpan="3" 
-                 Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
-                 HorizontalAlignment="Center" 
-                 Margin="10" AcceptsReturn="True"/>
-        <TextBox x:Name="AuthorRow" Grid.Row="1" Grid.ColumnSpan="3" 
-                 Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
-                 HorizontalAlignment="Center" 
-                 Margin="10" AcceptsReturn="True"/>
-        <TextBox x:Name="TextRow" Grid.Row="2" Grid.ColumnSpan="3" 
-                 Width="{Binding ElementName=editW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
-                 HorizontalAlignment="Center" 
-                 Margin="10" AcceptsReturn="True"/>
+        <TextBox x:Name="TitleRow" Style="{StaticResource RowBorder}" Grid.Row="0"
+                 Text="Enter a title:" LostFocus="TitleRow_LostFocus" GotFocus="TitleRow_GotFocus"/>
+
+        <TextBox x:Name="AuthorRow" Style="{StaticResource RowBorder}" Grid.Row="1"
+                 Text="Enter an author:" LostFocus="AuthorRow_LostFocus" GotFocus="AuthorRow_GotFocus"/>
+
+        <TextBox x:Name="TextRow" Style="{StaticResource RowBorder}" Grid.Row="2" 
+                 Text="Enter a text:" LostFocus="TextRow_LostFocus" GotFocus="TextRow_GotFocus"/>
+        
         <Button x:Name="SaveButton" Margin="0,0,10,0" Padding="0" BorderThickness="1"
                  BorderBrush="Chocolate" Grid.Row="3" HorizontalAlignment="Right" 
                  VerticalAlignment="Center" Background="BurlyWood" Click="SaveButton_Click">
-            <Image Source="/button_save_w60.png" Width="60" Height="26"/>
+            <Image Source="/icons/button_save_w60.png" Width="60" Height="26"/>
         </Button>
         <Button x:Name="ReturnButton" Margin="0,0,80,0" Padding="0" BorderThickness="1" 
                  BorderBrush="Chocolate" Grid.Row="3" HorizontalAlignment="Right"
                  VerticalAlignment="Center" Background="BurlyWood" Click="ReturnButton_Click">
-            <Image Source="/button_return_w85.png" Width="85" Height="26"/>
+            <Image Source="/icons/button_return_w85.png" Width="85" Height="26"/>
         </Button>
     </Grid>
 </Window>
