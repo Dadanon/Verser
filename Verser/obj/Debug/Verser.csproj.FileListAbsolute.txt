@@ -91,3 +91,7 @@ C:\Users\Danny\Source\Repos\Verser\Verser\obj\Debug\Verser.csproj.CoreCompileInp
 C:\Users\Danny\Source\Repos\Verser\Verser\obj\Debug\Verser.csproj.CopyComplete
 C:\Users\Danny\Source\Repos\Verser\Verser\obj\Debug\Verser.exe
 C:\Users\Danny\Source\Repos\Verser\Verser\obj\Debug\Verser.pdb
+C:\Users\Кот\source\repos\Verser\Verser\bin\Debug\Verser.exe.manifest
+C:\Users\Кот\source\repos\Verser\Verser\bin\Debug\Verser.application
+C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\Verser.exe.manifest
+C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\Verser.application

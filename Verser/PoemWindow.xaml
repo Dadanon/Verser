@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verser"
         mc:Ignorable="d"
-        Title="PoemWindow" Height="800" Width="300" x:Name="poemW" MinHeight="800" MinWidth="300">
+        Title="Verser" Height="800" Width="300" x:Name="poemW" MinHeight="800" MinWidth="300">
     <Window.Background>
         <ImageBrush ImageSource="/back/poemW.jpg" Stretch="None"/>
     </Window.Background>
@@ -18,7 +18,10 @@
             <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="TitleRow" Grid.Row="0" Margin="10" Width="{Binding ElementName=poemW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}">
+        <TextBox x:Name="TitleRow" Grid.Row="0" Margin="10" 
+                 VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                 FontSize="14" FontFamily="Century Gothic" 
+                 Width="{Binding ElementName=poemW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="15"/>
@@ -35,9 +38,9 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <ScrollViewer x:Name="TextView" Grid.Row="1" Margin="10" VerticalScrollBarVisibility="Hidden" 
+        <Border x:Name="TextBorder" Grid.Row="1" Margin="20" CornerRadius="15" ScrollViewer.CanContentScroll="True"
                       Width="{Binding ElementName=poemW, Path=Width, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource minusConverter}}" 
-                      Background="AliceBlue">
-        </ScrollViewer>
+                      Background="Bisque">
+        </Border>
     </Grid>
 </Window>

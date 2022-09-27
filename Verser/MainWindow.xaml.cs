@@ -120,7 +120,7 @@ namespace Verser
             while (reader.Read())
             {
                 text += reader["Text"] + "\n";
-                newTitle += reader["Title"] + " - " + reader["Author"];
+                newTitle += reader["Author"] + "\n" + reader["Title"];
             }
             reader.Close();
             m_db.Close();
@@ -216,9 +216,14 @@ namespace Verser
                 string[] data = SearchDataById(sender, e);
                 PoemWindow ne = new PoemWindow();
                 ne.TitleRow.Text = data[0];
+                ne.TitleRow.FontWeight = FontWeights.Bold;
                 TextBlock ttt = ExpandableTextBlock(sender, e);
+                ttt.Resources.Add(style.TargetType, style);
                 ttt.Margin = new Thickness(10);
-                ne.TextView.Content = ttt;
+                ScrollViewer scrollViewer = new ScrollViewer();
+                scrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                scrollViewer.Content = ttt;
+                ne.TextBorder.Child = scrollViewer;
                 PoemWindow.exps = expanders;
                 OpenClose.ChangeWindow(this, ne);
             }
