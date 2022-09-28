@@ -95,3 +95,7 @@ C:\Users\Кот\source\repos\Verser\Verser\bin\Debug\Verser.exe.manifest
 C:\Users\Кот\source\repos\Verser\Verser\bin\Debug\Verser.application
 C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\Verser.exe.manifest
 C:\Users\Кот\source\repos\Verser\Verser\obj\Debug\Verser.application
+C:\Users\Computer\source\repos\Verser\Verser\bin\Debug\Verser.exe.manifest
+C:\Users\Computer\source\repos\Verser\Verser\bin\Debug\Verser.application
+C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\Verser.exe.manifest
+C:\Users\Computer\source\repos\Verser\Verser\obj\Debug\Verser.application

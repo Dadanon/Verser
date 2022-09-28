@@ -25,6 +25,8 @@
                 VerticalAlignment="Center" Background="BurlyWood" Click="ButtonNew_Click">
             <Image Source="/icons/button_new_w75.png" Width="75" Height="26"/>
         </Button>
-        <StackPanel x:Name="TitleView" Grid.Row="0" CanVerticallyScroll="True"/>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="TitleView"/>
+        </ScrollViewer>
     </Grid>
 </Window>
